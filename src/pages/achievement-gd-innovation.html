@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guangdong Youth Innovation Competition - OlinCheung</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-pink: #ff6b9d;
+            --light-pink: #ffd6e0;
+            --soft-pink: #fff5f7;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --shadow: 0 10px 30px rgba(255, 107, 157, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        .hero-section {
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--white) 100%);
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ff6b9d' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-pink);
+            text-decoration: none;
+            font-weight: 500;
+            margin: 30px 0;
+            transition: var(--transition);
+            background: var(--white);
+            padding: 12px 24px;
+            border-radius: 30px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            border: 2px solid var(--primary-pink);
+        }
+        
+        .back-btn:hover {
+            transform: translateX(-5px);
+            background: var(--primary-pink);
+            color: var(--white);
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary-pink) 0%, #ff8fab 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero-content h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--primary-pink);
+            margin-bottom: 20px;
+        }
+        
+        .year-badge {
+            display: inline-block;
+            background: var(--primary-pink);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Main Content Styles */
+        .content-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary-pink);
+            border-radius: 2px;
+        }
+        
+        .project-overview {
+            background: var(--soft-pink);
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+        }
+        
+        .project-overview p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .awards-section {
+            display: flex;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .award-card {
+            flex: 1;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            border-top: 4px solid var(--primary-pink);
+        }
+        
+        .award-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .award-icon {
+            font-size: 2.5rem;
+            color: var(--primary-pink);
+            margin-bottom: 15px;
+        }
+        
+        .award-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 107, 157, 0.15);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--light-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--primary-pink);
+            font-size: 1.5rem;
+        }
+        
+        .feature-card h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .recognition-section {
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--soft-pink) 100%);
+            padding: 60px 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 60px 0;
+        }
+        
+        .recognition-section h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .recognition-section p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .awards-section {
+                flex-direction: column;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Guangdong Youth Innovation Competition</h1>
+                <h2>First Prize & Best Creativity Award</h2>
+                <span class="year-badge">2019 | Guangzhou, China</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section">
+        <div class="container">
+            <!-- Project Overview -->
+            <h3 class="section-title">Project Overview</h3>
+            <div class="project-overview">
+                <p>The Guangdong Youth Innovation Competition is a prestigious event that encourages young innovators to develop solutions for real-world challenges. In the 2019 edition, my project focused on creative structural design, addressing critical issues in temporary and modular construction.</p>
+                <p>The competition brought together talented students from across Guangdong province, fostering innovation and technological advancement through practical applications.</p>
+            </div>
+
+            <!-- Awards Section -->
+            <div class="awards-section">
+                <div class="award-card">
+                    <div class="award-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h4>First Prize</h4>
+                    <p>Awarded for technical excellence and innovative approach to solving complex structural design challenges.</p>
+                </div>
+                <div class="award-card">
+                    <div class="award-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4>Best Creativity Award</h4>
+                    <p>Recognized for the unique and creative methodology applied to structural engineering and design.</p>
+                </div>
+            </div>
+
+            <!-- Key Features -->
+            <h3 class="section-title">Key Features</h3>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h4>Modular Design</h4>
+                    <p>Innovative modular structural system allowing for rapid assembly and disassembly with minimal tools.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-recycle"></i>
+                    </div>
+                    <h4>Sustainable Materials</h4>
+                    <p>Utilization of eco-friendly and recyclable materials to reduce environmental impact.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-expand-arrows-alt"></i>
+                    </div>
+                    <h4>Adaptive Structure</h4>
+                    <p>Flexible design that can adapt to various terrains and usage scenarios.</p>
+                </div>
+            </div>
+
+            <!-- Applications -->
+            <h3 class="section-title">Practical Applications</h3>
+            <div class="project-overview">
+                <p>This creative structural design has practical applications in multiple fields including emergency shelters, temporary event structures, and modular housing solutions. The innovation provides a foundation for more efficient and sustainable construction methods.</p>
+                <p>Potential applications include:</p>
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li style="padding: 10px 0; border-bottom: 1px solid rgba(255, 107, 157, 0.2);">
+                        <i class="fas fa-check" style="color: var(--primary-pink); margin-right: 10px;"></i>
+                        Emergency response shelters for disaster relief
+                    </li>
+                    <li style="padding: 10px 0; border-bottom: 1px solid rgba(255, 107, 157, 0.2);">
+                        <i class="fas fa-check" style="color: var(--primary-pink); margin-right: 10px;"></i>
+                        Temporary structures for events and exhibitions
+                    </li>
+                    <li style="padding: 10px 0;">
+                        <i class="fas fa-check" style="color: var(--primary-pink); margin-right: 10px;"></i>
+                        Modular housing solutions for rapid deployment
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Recognition Section -->
+            <div class="recognition-section">
+                <h3>Dual Recognition</h3>
+                <p>The project received both the First Prize and Best Creativity Award, highlighting its exceptional technical excellence and innovative approach. This dual recognition at one of Guangdong's most prestigious youth innovation competitions underscores the project's significant contribution to creative structural design.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer with Back Button -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <a href="index.html" class="back-btn">
+                    <i class="fas fa-arrow-left" style="margin-right: 8px;"></i> Back to Portfolio
+                </a>
+                <p>© 2025 OlinCheung Portfolio | Guangdong Youth Innovation Competition Project</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

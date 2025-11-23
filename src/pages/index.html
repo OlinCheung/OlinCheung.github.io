@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OlinCheung | Embedded Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ff6b9d;
+            --light-pink: #ffd6e0;
+            --dark-pink: #e0558a;
+            --white: #ffffff;
+            --light-gray: #f8f8f8;
+            --text-dark: #333333;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-pink);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-pink);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-pink);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--white) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        
+        .hero h1 span {
+            color: var(--primary-pink);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary-pink);
+            color: var(--white);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-pink);
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary-pink);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 107, 157, 0.3);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-pink);
+            margin-left: 1rem;
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary-pink);
+            color: var(--white);
+        }
+        
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background-color: rgba(255, 107, 157, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-element:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 20%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+        
+        .floating-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+        }
+        
+        /* Sections */
+        section {
+            padding: 5rem 5%;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            display: inline-block;
+            position: relative;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--primary-pink);
+        }
+        
+        /* About Section */
+        .about {
+            background-color: var(--light-gray);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-pink);
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .about-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--primary-pink);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+            z-index: -1;
+        }
+        
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .skill-card i {
+            font-size: 2.5rem;
+            color: var(--primary-pink);
+            margin-bottom: 1rem;
+        }
+        
+        .skill-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Research Section */
+        .research {
+            background-color: var(--light-gray);
+        }
+        
+        .research-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .research-content {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .research-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .research-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .research-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .research-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card h4 {
+            color: var(--primary-pink);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-card h4 i {
+            margin-right: 0.5rem;
+        }
+        
+        /* Technical Ability Section */
+        .technical-ability {
+            background-color: var(--white);
+        }
+        
+        .ability-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .ability-card {
+            background-color: var(--light-gray);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ability-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--primary-pink);
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: transform 0.3s ease;
+        }
+        
+        .ability-card:hover::before {
+            transform: scaleY(1);
+        }
+        
+        .ability-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .ability-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-pink);
+            display: flex;
+            align-items: center;
+        }
+        
+        .ability-card h3 i {
+            margin-right: 0.5rem;
+        }
+        
+        .ability-list {
+            list-style-type: none;
+        }
+        
+        .ability-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .ability-list li::before {
+            content: '▸▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-pink);
+        }
+        
+        /* Achievements Section */
+        .achievements {
+            background-color: var(--light-gray);
+        }
+        
+        .achievements-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .achievement-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-pink) 0%, var(--dark-pink) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .achievement-card:hover::before {
+            opacity: 0.1;
+        }
+        
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .achievement-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .achievement-card p {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .achievement-card .year {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background-color: var(--light-pink);
+            color: var(--primary-pink);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* External Link Indicator */
+        .external-link {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            color: var(--primary-pink);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+        
+        .achievement-card:hover .external-link {
+            opacity: 1;
+        }
+        
+        /* Soulmate Section */
+        .soulmate {
+            background-color: var(--white);
+            position: relative;
+        }
+        
+        .soulmate-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+        
+        .soulmate-timeline {
+            flex: 1;
+            min-width: 300px;
+            height: 500px;
+            overflow-y: auto;
+            padding-right: 1rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-pink) var(--light-gray);
+        }
+        
+        .soulmate-timeline::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .soulmate-timeline::-webkit-scrollbar-track {
+            background: var(--light-gray);
+            border-radius: 3px;
+        }
+        
+        .soulmate-timeline::-webkit-scrollbar-thumb {
+            background: var(--primary-pink);
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding: 2rem 0;
+            border-left: 3px solid var(--light-pink);
+            margin-left: 2rem;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary-pink);
+            border: 4px solid var(--white);
+            box-shadow: 0 0 0 3px var(--primary-pink);
+        }
+        
+        .timeline-content {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-left: 1rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        
+        .timeline-content:hover {
+            transform: translateX(10px);
+        }
+        
+        .timeline-date {
+            position: absolute;
+            left: -120px;
+            top: 2rem;
+            background: var(--primary-pink);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .timeline-date::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid var(--primary-pink);
+        }
+        
+        .timeline-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-pink);
+        }
+        
+        .timeline-subtitle {
+            font-size: 1rem;
+            color: var(--text-dark);
+            line-height: 1.5;
+        }
+        
+        .soulmate-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .soulmate-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-pink);
+        }
+        
+        .soulmate-info p {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .soulmate-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .soulmate-feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: var(--white);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+        
+        .soulmate-feature:hover {
+            transform: translateY(-5px);
+            background: var(--light-pink);
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+        }
+        
+        .feature-content h4 {
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+        
+        .feature-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            margin: 0 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-pink);
+            transform: translateY(-3px);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 5%;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            section {
+                padding: 3rem 5%;
+            }
+            
+            .soulmate-container {
+                flex-direction: column;
+            }
+            
+            .soulmate-timeline {
+                height: 400px;
+            }
+            
+            .timeline-date {
+                position: static;
+                display: inline-block;
+                margin-bottom: 1rem;
+            }
+            
+            .timeline-date::after {
+                display: none;
+            }
+            
+            .timeline-item {
+                margin-left: 0;
+                border-left: none;
+                padding-left: 0;
+            }
+            
+            .timeline-item::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">OlinCheung</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#technical-ability">Technical Ability</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#soulmate">Soulmate</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Hi, I'm <span>OlinCheung</span></h1>
+            <p>An aspiring embedded engineer passionate about creating innovative solutions through hardware and software integration. Currently pursuing Computer Science and Technology at Jinan University.</p>
+            <div class="hero-buttons">
+                <a href="#about" class="btn">Learn More</a>
+                <a href="#soulmate" class="btn btn-outline">Find Soulmate</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-title">
+            <h2>About Me</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>From Guangzhou to Embedded Engineering</h3>
+                <p>I'm OlinCheung (Zhang Jiayu), a Miao ethnic minority student from Guangzhou. The city's vibrant atmosphere and my mother's unwavering support have shaped my passion for exploration and technology.</p>
+                <p>Since childhood, I've been fascinated by how things work. My journey began with dismantling an old radio, which opened my eyes to the world of electronics. This curiosity evolved into a passion for building computers and programming.</p>
+                <p>Currently, I'm a freshman majoring in Computer Science and Technology at Jinan University's International College. My goal is to become an innovative embedded engineer who contributes to China's technological self-reliance.</p>
+                <p>My MBTI type is INTP - I value independent thinking, rational analysis, and solving complex problems. My motto is "Deconstruct appearances, reach the essence, rationality above all."</p>
+            </div>
+            <div class="about-image">
+                <!-- 原文档中此处没有图片，保持原样 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="section-title">
+            <h2>My Skills</h2>
+        </div>
+        <div class="skills-container">
+            <div class="skill-card">
+                <i class="fas fa-microchip"></i>
+                <h3>Embedded Systems</h3>
+                <p>Proficient in microcontroller programming, circuit design, and hardware-software integration. Experienced with STM32, ARM Cortex-M architecture, and RTOS.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-code"></i>
+                <h3>Programming</h3>
+                <p>Strong skills in C/C++ for embedded development. Also experienced with Python for scripting and data processing. Knowledge of data structures and algorithms.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-robot"></i>
+                <h3>Robotics</h3>
+                <p>Extensive experience in robot design, construction, and programming. Specialized in sensor integration, motion control, and autonomous navigation algorithms.</p>
+            </div>
+            <div class="skill-card">
+                <i class="fas fa-project-diagram"></i>
+                <h3>Problem Solving</h3>
+                <p>Strong ability to break down complex problems, analyze root causes, and develop innovative solutions. Experience with VMD and wavelet transform for signal processing.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="research">
+        <div class="section-title">
+            <h2>Research Achievements</h2>
+        </div>
+        <div class="research-container">
+            <div class="research-content">
+                <div class="research-text">
+                    <h3>VMD and Wavelet Transform Hybrid Filtering Algorithm</h3>
+                    <p>During my project development, I discovered that PPG signals are susceptible to motion artifacts and environmental light interference, resulting in significant high-frequency noise. To enhance data reliability, I researched and implemented a hybrid filtering algorithm combining VMD (Variational Mode Decomposition) and wavelet transform.</p>
+                    <p>This innovative approach effectively separates different frequency components, significantly improving signal reliability without increasing hardware costs. The algorithm's adaptive nature and precise modal separation capabilities provide a substantial leap in monitoring performance and data reliability.</p>
+                </div>
+                <div class="research-image">
+                    <img src="images/VMD.png" alt="VMD" width="400" height="300">
+                </div>
+            </div>
+            
+            <div class="research-features">
+                <div class="feature-card">
+                    <h4><i class="fas fa-cogs"></i> Technical Innovation</h4>
+                    <p>Combined VMD's adaptive decomposition with wavelet transform's multi-resolution analysis for superior noise reduction in biomedical signals.</p>
+                </div>
+                <div class="feature-card">
+                    <h4><i class="fas fa-chart-line"></i> Performance Improvement</h4>
+                    <p>Achieved significant enhancement in signal-to-noise ratio while maintaining computational efficiency suitable for embedded systems.</p>
+                </div>
+                <div class="feature-card">
+                    <h4><i class="fas fa-microchip"></i> Hardware Compatibility</h4>
+                    <p>Designed to operate efficiently on resource-constrained embedded platforms without requiring additional hardware components.</p>
+                </div>
+                <div class="feature-card">
+                    <h4><i class="fas fa-flask"></i> Practical Application</h4>
+                    <p>Successfully applied in biomedical monitoring devices, demonstrating real-world effectiveness in challenging signal environments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Ability Section -->
+    <section id="technical-ability" class="technical-ability">
+        <div class="section-title">
+            <h2>Technical Ability</h2>
+        </div>
+        <div class="ability-container">
+            <div class="ability-card">
+                <h3><i class="fas fa-laptop-code"></i> Programming Languages</h3>
+                <ul class="ability-list">
+                    <li>C/C++: Advanced proficiency in embedded systems development</li>
+                    <li>Python: Scripting, data analysis, and automation</li>
+                    <li>Assembly: Low-level programming for microcontroller optimization</li>
+                    <li>MATLAB: Algorithm development and signal processing</li>
+                </ul>
+            </div>
+            <div class="ability-card">
+                <h3><i class="fas fa-microchip"></i> Embedded Technologies</h3>
+                <ul class="ability-list">
+                    <li>STM32 microcontroller family and ARM Cortex-M architecture</li>
+                    <li>Real-Time Operating Systems (FreeRTOS, Zephyr)</li>
+                    <li>Circuit design and PCB layout (Altium Designer, KiCad)</li>
+                    <li>Sensor integration and signal conditioning</li>
+                </ul>
+            </div>
+            <div class="ability-card">
+                <h3><i class="fas fa-robot"></i> Robotics & Automation</h3>
+                <ul class="ability-list">
+                    <li>Robot kinematics and motion control algorithms</li>
+                    <li>Computer vision and image processing (OpenCV)</li>
+                    <li>Autonomous navigation and path planning</li>
+                    <li>Motor control and servo systems</li>
+                </ul>
+            </div>
+            <div class="ability-card">
+                <h3><i class="fas fa-tools"></i> Development Tools</h3>
+                <ul class="ability-list">
+                    <li>Version control (Git, SVN)</li>
+                    <li>Debugging and testing (JTAG, logic analyzers, oscilloscopes)</li>
+                    <li>Continuous integration and automated testing</li>
+                    <li>Documentation and technical writing</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="achievements">
+        <div class="section-title">
+            <h2>Achievements</h2>
+        </div>
+        <div class="achievements-container">
+            <a href="achievement-IYRC.html" target="_blank" class="achievement-card">
+                <span class="year">2018</span>
+                <h3>IYRC Soccer Grand Prize</h3>
+                <p>Won the global championship at the International Youth Robot Competition in Thailand.</p>
+                <i class="fas fa-external-link-alt external-link"></i>
+            </a>
+            <a href="achievement-gd-innovation.html" target="_blank" class="achievement-card">
+                <span class="year">2019</span>
+                <h3>Guangdong Innovation Competition</h3>
+                <p>First prize and Best Creativity Award at Guangdong Youth Innovation Thinking and Technology Practice Competition.</p>
+                <i class="fas fa-external-link-alt external-link"></i>
+            </a>
+            <a href="achievement-blue-bridge.html" target="_blank" class="achievement-card">
+                <span class="year">2020</span>
+                <h3>Blue Bridge Cup</h3>
+                <p>Second prize in Guangdong division selection of Blue Bridge Cup programming competition.</p>
+                <i class="fas fa-external-link-alt external-link"></i>
+            </a>
+            <a href="achievement-csp-certification.html" target="_blank" class="achievement-card">
+                <span class="year">2020</span>
+                <h3>CSP Certification</h3>
+                <p>Second prize in GSP-J/S non-professional software ability certification.</p>
+                <i class="fas fa-external-link-alt external-link"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Soulmate Section -->
+    <section id="soulmate" class="soulmate">
+        <div class="section-title">
+            <h2>Soulmate</h2>
+        </div>
+        <div class="soulmate-container">
+            <div class="soulmate-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2025</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">To LuLin</h3>
+                        <p class="timeline-subtitle">In the page woven by time, I always hope a certain gaze will stumble into the lines—like the evening breeze brushing the folds of code, like starlight falling on unfinished paragraphs, quietly illuminating the tenderness hidden in parentheses. No need to ask where the wind goes, nor delve into the trajectory of stars; I only wish that with every page refresh in the days ahead, I can encounter the same preference by chance, letting the silent characters grow into tacit foreshadows between our hearts.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2020</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">To ZiXuan&YingCai</h3>
+                        <p class="timeline-subtitle">From middle school halls to future dawns, our bond lingers soft as an old song—quiet, steady, unshaken. May the years ahead keep this warmth alive, unspoken yet ever true.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">To XiYan</h3>
+                        <p class="timeline-subtitle">No distance of place or lapse of time can lessen the friendship of those who are thoroughly persuaded of each other's worth.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2019</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">University Journey</h3>
+                        <p class="timeline-subtitle">Both enrolled in Computer Science programs at different universities but continued collaborating on projects.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2020</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Research Collaboration</h3>
+                        <p class="timeline-subtitle">Published our first joint research paper on embedded systems optimization.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2021</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Startup Venture</h3>
+                        <p class="timeline-subtitle">Co-founded a tech startup focusing on IoT solutions for smart agriculture.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2022</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Professional Growth</h3>
+                        <p class="timeline-subtitle">Both secured positions at leading tech companies while continuing our partnership.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2023</div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Future Vision</h3>
+                        <p class="timeline-subtitle">Planning to establish our own embedded systems research lab and mentor the next generation of engineers.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="soulmate-info">
+                <h3>Technical & Personal Partnership</h3>
+                <p>My soulmate is not just a partner in life, but also my most trusted collaborator in technology. We complement each other's skills perfectly - while I focus on hardware design and embedded systems, they excel in algorithm development and software architecture.</p>
+                <p>Beyond technical collaboration, we support each other's personal growth and share a deep understanding of the challenges and rewards of pursuing a career in technology. Our relationship is built on mutual respect, shared values, and a common passion for creating meaningful impact through engineering.</p>
+                <p>Together, we've learned that the most complex problems are best solved through diverse perspectives and complementary expertise. Our journey continues as we explore new frontiers in embedded systems and artificial intelligence.</p>
+                
+                <div class="soulmate-features">
+                    <div class="soulmate-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Shared Values</h4>
+                            <p>Mutual respect, trust, and common goals in technology and life</p>
+                        </div>
+                    </div>
+                    <div class="soulmate-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Technical Synergy</h4>
+                            <p>Complementary skills in hardware and software development</p>
+                        </div>
+                    </div>
+                    <div class="soulmate-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Proven Success</h4>
+                            <p>Multiple competition wins and successful projects together</p>
+                        </div>
+                    </div>
+                    <div class="soulmate-feature">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="feature-content">
+                            <h4>Future Vision</h4>
+                            <p>Shared dreams of establishing a research lab and mentoring others</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-weibo"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2025 OlinCheung.International College,Jinan University. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // 移动端菜单切换
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // 表单提交处理
+        document.getElementById('contactForm')?.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 滚动时更新导航栏样式
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'var(--shadow)';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achievement Details - OlinCheung</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ff6b9d;
+            --light-pink: #ffd6e0;
+            --dark-pink: #e0558a;
+            --white: #ffffff;
+            --light-gray: #f8f8f8;
+            --text-dark: #333333;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .achievement-header {
+            background: linear-gradient(135deg, var(--light-pink) 0%, var(--white) 100%);
+            padding: 100px 0 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .achievement-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><circle cx="50" cy="50" r="40" fill="%23ff6b9d"/></svg>');
+            opacity: 0.1;
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary-pink);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .back-btn:hover {
+            transform: translateX(-5px);
+        }
+        
+        .back-btn i {
+            margin-right: 8px;
+        }
+        
+        .achievement-badge {
+            width: 100px;
+            height: 100px;
+            background: var(--primary-pink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .achievement-badge i {
+            font-size: 3rem;
+            color: var(--white);
+        }
+        
+        .achievement-title {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+        
+        .achievement-subtitle {
+            font-size: 1.2rem;
+            color: var(--primary-pink);
+            margin-bottom: 20px;
+        }
+        
+        .achievement-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .meta-item i {
+            color: var(--primary-pink);
+        }
+        
+        /* Content Sections */
+        .content-section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--text-dark);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary-pink);
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .text-content {
+            line-height: 1.8;
+        }
+        
+        .text-content p {
+            margin-bottom: 20px;
+        }
+        
+        .highlight-box {
+            background: var(--light-pink);
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary-pink);
+        }
+        
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .skill-item {
+            background: var(--light-gray);
+            padding: 12px 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .skill-item i {
+            color: var(--primary-pink);
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 200px;
+            background: var(--light-gray);
+            text-align: center;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--light-pink);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--white);
+            border: 4px solid var(--primary-pink);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -10px;
+        }
+        
+        .right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        /* Impact Section */
+        .impact-section {
+            background: var(--light-gray);
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .impact-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .impact-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .impact-card i {
+            font-size: 2.5rem;
+            color: var(--primary-pink);
+            margin-bottom: 15px;
+        }
+        
+        /* Navigation */
+        .achievement-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding: 20px 0;
+            border-top: 1px solid var(--light-gray);
+        }
+        
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            background: var(--light-pink);
+            color: var(--text-dark);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        .nav-btn:hover {
+            background: var(--primary-pink);
+            color: var(--white);
+        }
+        
+        .nav-btn i {
+            margin: 0 8px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .left, .right {
+                left: 0;
+            }
+            
+            .left::after, .right::after {
+                left: 21px;
+            }
+            
+            .achievement-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Achievement Header -->
+    <header class="achievement-header">
+        <div class="container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+            
+            <div class="achievement-badge">
+                <i class="fas fa-robot"></i>
+            </div>
+            
+            <h1 class="achievement-title">IYRC International Robotics Competition</h1>
+            <p class="achievement-subtitle">Global Champion - Robot Soccer Category</p>
+            
+            <div class="achievement-meta">
+                <div class="meta-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>August 2018</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Bangkok, Thailand</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>2,000+ Participants</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-trophy"></i>
+                    <span>Grand Prize Winner</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overview Section -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Competition Overview</h2>
+            
+            <div class="two-column">
+                <div class="text-content">
+                    <p>The International Youth Robot Competition (IYRC) is a global robotics competition that brings together young robotics enthusiasts from around the world. The 2018 edition held in Bangkok, Thailand attracted over 2,000 participants from more than 30 countries.</p>
+                    
+                    <div class="highlight-box">
+                        <p>As the technical lead of my team, I was responsible for the core technology development of our soccer robot, focusing on autonomous navigation, object recognition, and strategic gameplay algorithms.</p>
+                    </div>
+                    
+                    <p>The robot soccer category required teams to design and build autonomous robots capable of playing soccer against opponent robots. The challenge involved complex integration of hardware and software systems to create responsive and strategic robotic players.</p>
+                </div>
+                
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        
+                    </div>
+                    <div class="gallery-item">
+                        
+                    </div>
+                    <div class="gallery-item">
+                        
+                    </div>
+                    <div class="gallery-item">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 其余部分保持不变 -->
+    <!-- Technical Challenges Section -->
+    <section class="content-section" style="background-color: var(--light-gray);">
+        <div class="container">
+            <h2 class="section-title">Technical Challenges & Solutions</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Vision System Optimization</h3>
+                        <p>Developed adaptive algorithms to handle varying lighting conditions in the competition arena, which significantly improved object detection accuracy.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Motion Control Precision</h3>
+                        <p>Implemented PID controllers for precise motor control, enabling accurate ball handling and strategic positioning during matches.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <h3>Real-time Decision Making</h3>
+                        <p>Created state-based AI algorithms that allowed the robot to make strategic decisions in real-time during fast-paced gameplay.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <h3>Hardware Integration</h3>
+                        <p>Designed a custom chassis and mechanical systems that balanced durability, weight, and functionality for optimal performance.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <p>The most significant breakthrough was our implementation of a hybrid filtering approach combining VMD (Variational Mode Decomposition) and wavelet transform to process sensor data, which dramatically improved signal reliability in noisy competition environments.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Applied Section -->
+    <section class="content-section">
+        <div class="container">
+            <h2 class="section-title">Skills Applied</h2>
+            
+            <div class="skills-list">
+                <div class="skill-item">
+                    <i class="fas fa-microchip"></i>
+                    <span>Embedded Systems</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-code"></i>
+                    <span>C/C++ Programming</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-robot"></i>
+                    <span>Robotics Algorithms</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-brain"></i>
+                    <span>AI & Machine Learning</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-project-diagram"></i>
+                    <span>System Integration</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-users"></i>
+                    <span>Team Leadership</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section class="impact-section">
+        <div class="container">
+            <h2 class="section-title">Achievement Impact</h2>
+            
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <i class="fas fa-globe-asia"></i>
+                    <h3>International Recognition</h3>
+                    <p>Award presented by Thailand's Deputy Prime Minister, recognizing technical innovation in youth robotics.</p>
+                </div>
+                
+                <div class="impact-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Academic Advancement</h3>
+                    <p>This achievement strengthened my university application and demonstrated practical engineering capabilities.</p>
+                </div>
+                
+                <div class="impact-card">
+                    <i class="fas fa-network-wired"></i>
+                    <h3>Professional Network</h3>
+                    <p>Connected with international robotics experts and like-minded innovators from around the world.</p>
+                </div>
+                
+                <div class="impact-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>Career Foundation</h3>
+                    <p>Laid the groundwork for my pursuit of embedded systems engineering as a career path.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <section class="content-section">
+        <div class="container">
+            <div class="achievement-nav">
+                <a href="achievement-gd-innovation.html" class="nav-btn">
+                    <i class="fas fa-arrow-left"></i> Previous Achievement
+                </a>
+                
+                <a href="index.html" class="nav-btn">
+                    Back to Portfolio <i class="fas fa-home"></i>
+                </a>
+                
+                <a href="achievement-blue-bridge.html" class="nav-btn">
+                    Next Achievement <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Simple script to handle dynamic content loading based on URL parameters
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get achievement ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const achievementId = urlParams.get('id');
+            
+            // This is where you would load different content based on the achievement ID
+            // For now, we'll just demonstrate with IYRC content
+            
+            // You can expand this to load different achievement data
+            if (achievementId === 'gd-innovation') {
+                // Load Guangdong Innovation Competition content
+                document.querySelector('.achievement-badge i').className = 'fas fa-lightbulb';
+                document.querySelector('.achievement-title').textContent = 'Guangdong Innovation Competition';
+                document.querySelector('.achievement-subtitle').textContent = 'First Prize & Best Creativity Award';
+                // Update other content accordingly
+            } else if (achievementId === 'blue-bridge') {
+                // Load Blue Bridge Cup content
+                document.querySelector('.achievement-badge i').className = 'fas fa-code';
+                document.querySelector('.achievement-title').textContent = 'Blue Bridge Cup Programming Competition';
+                document.querySelector('.achievement-subtitle').textContent = 'Second Prize - Guangdong Division';
+                // Update other content accordingly
+            }
+            // Default is IYRC content
+        });
+    </script>
+</body>
+</html>
